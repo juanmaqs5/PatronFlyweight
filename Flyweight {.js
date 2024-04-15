@@ -34,7 +34,7 @@ class Student {
     }
 
     introduce() {
-        console.log(Hi, I'm ${this.name} and I'm ${this.age} years old.);
+        console.log(Hola, me llamo ${this.name} and tengo ${this.age} años.);
     }
 }
 
