@@ -1,32 +1,60 @@
-class Flyweight {
-  constructor(sharedState) {
-    this.sharedState = sharedState;
-  }
-}
-
-class FlyweightFactory {
-  constructor() {
-    this.flyweights = {};
-  }
-
-  getFlyweight(key) {
-    if (!this.flyweights[key]) {
-      this.flyweights[key] = new Flyweight(key);
+// Flyweight factory
+class StudentFactory {
+    constructor() {
+        this.students = {};
     }
-    return this.flyweights[key];
-  }
+
+    getStudent(name, age) {
+        const key = age.toString();
+        if (!this.students[key]) {
+            this.students[key] = [];
+        }
+
+        const existingStudent = this.students[key].find(student => student.name === name);
+        if (existingStudent) {
+            return existingStudent;
+        }
+
+        const newStudent = new Student(name, age);
+        this.students[key].push(newStudent);
+        return newStudent;
+    }
+
+    getTotalStudentsByAge(age) {
+        const key = age.toString();
+        return this.students[key] ? this.students[key].length : 0;
+    }
 }
 
-const factory = new FlyweightFactory();
+// Flyweight
+class Student {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
 
-function main() {
-  const flyweight1 = factory.getFlyweight('key1');
-  const flyweight2 = factory.getFlyweight('key1');
-
-  console.log(flyweight1 === flyweight2); // Output: true (Same instance)
-
-  const flyweight3 = factory.getFlyweight('key2');
-  console.log(flyweight1 === flyweight3); // Output: false (Different instance)
+    introduce() {
+        console.log(Hi, I'm ${this.name} and I'm ${this.age} years old.);
+    }
 }
 
-main();
+// Usage
+const studentFactory = new StudentFactory();
+
+// Create students
+const tomas = studentFactory.getStudent("tomas", 10);
+const agustin = studentFactory.getStudent("agustin", 12);
+const ignacio = studentFactory.getStudent("ignacio", 10);
+const santiago = studentFactory.getStudent("santiago", 12);
+const martin = studentFactory.getStudent("martin", 10);
+
+// Introduce students
+tomas.introduce();
+agustin.introduce();
+ignacio.introduce();
+santiago.introduce();
+martin.introduce();
+
+// Output total students by age
+console.log("Total students aged 10:", studentFactory.getTotalStudentsByAge(10));
+console.log("Total students aged 12:", studentFactory.getTotalStudentsByAge(12));
