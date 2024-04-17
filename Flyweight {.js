@@ -41,20 +41,20 @@ class Student {
 // Usage
 const studentFactory = new StudentFactory();
 
-// Create students
-const tomas = studentFactory.getStudent("tomas", 10);
-const agustin = studentFactory.getStudent("agustin", 12);
-const ignacio = studentFactory.getStudent("ignacio", 10);
-const santiago = studentFactory.getStudent("santiago", 12);
-const martin = studentFactory.getStudent("martin", 10);
+// Crear students
+const tomas = studentFactory.getStudent("tomas", 20);
+const lucas = studentFactory.getStudent("lucas", 22);
+const ignacio = studentFactory.getStudent("ignacio", 20);
+const santiago = studentFactory.getStudent("santiago", 22);
+const martin = studentFactory.getStudent("martin", 20);
 
-// Introduce students
+// Introducir students
 tomas.introduce();
-agustin.introduce();
+lucas.introduce();
 ignacio.introduce();
 santiago.introduce();
 martin.introduce();
 
-// Output total students by age
-console.log("Total students aged 10:", studentFactory.getTotalStudentsByAge(10));
-console.log("Total students aged 12:", studentFactory.getTotalStudentsByAge(12));
+// Output total students por edad
+console.log("Total students aged 20:", studentFactory.getTotalStudentsByAge(20));
+console.log("Total students aged 22:", studentFactory.getTotalStudentsByAge(22));
